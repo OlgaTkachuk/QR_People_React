@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Button from '@material-ui/core/Button';
 
 import './Header.css';
+import {Link} from "react-router-dom";
 
 const AuthButtons = ({children, className}) => {
     console.log(className);
@@ -19,12 +20,16 @@ const AuthButtons = ({children, className}) => {
     } else {
         return (
             <div className={className}>
+              <Link to='/login'>
                 <Button>
-                    Login
+                  Login
                 </Button>
+              </Link>
+              <Link to='/register'>
                 <Button>
-                    Register
+                  Register
                 </Button>
+              </Link>
             </div>
         );
     }

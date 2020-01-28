@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Route, Switch} from "react-router-dom";
-import Link from "@material-ui/core/Link";
 import HomePage from "../components/HomePage/HomePage";
+import {Register} from "../components/Register";
+import {Login} from "../components/Login";
 
 class Router extends Component{
 
@@ -9,14 +10,17 @@ class Router extends Component{
     return (
       <Switch>
 
-        <Route path ='/hello'>
-          <Link to={`/`}>HOME</Link>
+        <Route path ='/login'>
+          <Login/>
+        </Route>
+
+        <Route path ='/register'>
+          <Register/>
         </Route>
 
         <Route path ='/'>
           <HomePage/>
         </Route>
-
 
       </Switch>
     )

@@ -10,8 +10,8 @@ function ErrorDialog(props) {
   console.log(props);
 
   return (
-    <Dialog open={props.open}>
-      <DialogTitle> ERROR </DialogTitle>
+    <Dialog open={props.open} className='error'>
+      <DialogTitle> TITLE </DialogTitle>
       {props.children}
     </Dialog>
   )
