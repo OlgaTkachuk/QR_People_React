@@ -1,12 +1,11 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
+
 import Button from '@material-ui/core/Button';
 
 import './Header.css';
-import {Link} from "react-router-dom";
 
 const AuthButtons = ({children, className}) => {
-    console.log(className);
-    console.log(children);
     const token = localStorage.getItem('access_token');
 
     if (token) {
@@ -54,6 +53,13 @@ class Header extends Component {
             <header className='header'>
                 <MainLogo/>
                 <AuthButtons className='auth-btn-wrapper'/>
+
+              <br/>
+              todo list:
+              <br/>
+              1) Огортка для фетча для посилання запитів на бек
+              <br/>
+              2) універсальна компонента інпуту
             </header>
         )
     }
