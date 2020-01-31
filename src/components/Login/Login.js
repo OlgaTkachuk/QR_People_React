@@ -1,10 +1,10 @@
 import React from "react";
 import {FormControl, InputLabel, Input, InputAdornment, IconButton} from "@material-ui/core";
 import {Visibility, VisibilityOff} from '@material-ui/icons';
-import Button from "@material-ui/core/Button";
 
 import './Login.css'
 import {FormSubmitButton} from "../helper-components";
+import {api} from "../../api/request.wrapper";
 
 export const Login = () => {
 
@@ -22,10 +22,11 @@ export const Login = () => {
     setValues({...values, [prop]: event.target.value});
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     console.log(values);
-  }
+    await api.authUser({values})
+  };
 
   return (
     <div className="register-form">
