@@ -10,13 +10,33 @@ export const api = {
             }`)
   },
 
-  authUser(userCredentials, infoToReturn) {
+  authUser(userCredentials) {
+
+    const optimazeObject = objectBuilder(userCredentials);
+
     return axios.post(config.API_HOST,
-      `
-      mutation {
-       login(credentials: ${userCredentials}),
-       ${infoToReturn}
+      {
+        query: `
+      mutation { login(credentials: {
+        ${optimazeObject}
+      }) {
+          access_token,
+          refresh_token
+        }
       }
-      `)
+      `
+      })
   }
+};
+
+function objectBuilder(nonGraphObject) {
+  let str = '';
+
+  const keys = Object.keys(nonGraphObject);
+
+  keys.forEach(key => {
+    str += `${key}: "${nonGraphObject[key]}", `
+  });
+
+  return str;
 }

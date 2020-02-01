@@ -14,7 +14,7 @@ export const Login = () => {
     showPassword: false,
   });
 
-  const handleClickShowPassword = () => {
+  const handleClickShowPassword = () => {// TODO try w/o state
     setValues({...values, showPassword: !values.showPassword});
   };
 
@@ -25,7 +25,8 @@ export const Login = () => {
   const submitForm = async (e) => {
     e.preventDefault();
     console.log(values);
-    await api.authUser({values})
+    delete values.showPassword;
+    await api.authUser({...values})
   };
 
   return (
