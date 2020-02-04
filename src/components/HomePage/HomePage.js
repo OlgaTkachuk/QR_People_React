@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 
@@ -15,12 +14,7 @@ function HomePage() {
   }
 
   return (
-    <div className="mainDiv">
-      <Link to='/hello'>
-        <Button>HELLO</Button>
-      </Link>
-
-
+    <div>
       <Button onClick={dialogOpen}>
         EROOR
       </Button>

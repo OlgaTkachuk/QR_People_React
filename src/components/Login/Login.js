@@ -4,6 +4,7 @@ import {Visibility, VisibilityOff} from '@material-ui/icons';
 
 import './Login.css'
 import {FormSubmitButton} from "../helper-components";
+import {tokenEnum} from "../../constants";
 import {api} from "../../api/request.wrapper";
 
 export const Login = () => {
@@ -26,7 +27,10 @@ export const Login = () => {
     e.preventDefault();
     console.log(values);
     delete values.showPassword;
-    await api.authUser({...values})
+    const resp = await api.authUser({...values});
+
+    localStorage.setItem(tokenEnum.ACCESS_TOKEN, resp.data.data.login[tokenEnum.ACCESS_TOKEN]);
+    localStorage.setItem(tokenEnum.REFRESH_TOKEN, resp.data.data.login[tokenEnum.REFRESH_TOKEN]);
   };
 
   return (

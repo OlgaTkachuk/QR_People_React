@@ -1,8 +1,10 @@
 import React from "react";
 
-import {FormSubmitButton} from "../helper-components";
 import {FormControl, IconButton, Input, InputAdornment, InputLabel} from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
+
+import {FormSubmitButton} from "../helper-components";
+import {api} from '../../api/request.wrapper'
 
 export const Register = () => {
 
@@ -23,9 +25,11 @@ export const Register = () => {
   };
 
 
-  const submitForm = (e) => {
+  const submitForm =  async e => {
     e.preventDefault();
     console.log(values);
+    delete values.showPassword;
+    await api.createUser(...values)
   };
 
   return (

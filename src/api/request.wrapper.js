@@ -1,20 +1,43 @@
 import {config} from '../config'
+import {tokenEnum, requestHeadersEnum} from '../constants'
 
 import {default as axios} from 'axios';
 
 export const api = {
   createUser(userContext) {
+    const userForCreate = objectBuilder(userContext);
+
     return axios.post(config.API_HOST,
       `mutation {
-                createUser(userInput: ${userContext})
+                createUser(userInput: ${userForCreate})
             }`)
   },
 
-  authUser(userCredentials) {
+  logoutUser() {
+    const access_token = localStorage.getItem(tokenEnum.ACCESS_TOKEN);
 
+    if (!access_token) {
+      throw new Error('No token')
+    }
+
+    return axios.post(
+      config.API_HOST,
+      {
+        query: `mutation {logout}`
+      },
+      {
+        headers: {
+          [requestHeadersEnum.AUTHORIZATION]: access_token
+        }
+      }
+    )
+  },
+
+  authUser(userCredentials) {
     const optimazeObject = objectBuilder(userCredentials);
 
-    return axios.post(config.API_HOST,
+    return axios.post(
+      config.API_HOST,
       {
         query: `
       mutation { login(credentials: {
