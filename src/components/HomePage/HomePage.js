@@ -15,12 +15,13 @@ function HomePage() {
 
   return (
     <div>
-      <Button onClick={dialogOpen}>
-        EROOR
-      </Button>
-      <ErrorDialog open={open} onClose={()=> {setOpen(false)}}>
-          Innertext
-      </ErrorDialog>
+      HOME PAGE
+      {/*<Button onClick={dialogOpen}>*/}
+      {/*  EROOR*/}
+      {/*</Button>*/}
+      {/*<ErrorDialog open={open} onClose={()=> {setOpen(false)}}>*/}
+      {/*    Innertext*/}
+      {/*</ErrorDialog>*/}
     </div>
   )
 }

@@ -1,24 +1,28 @@
 import React, {Component} from 'react'
 import {Route, Switch} from "react-router-dom";
-import HomePage from "../components/HomePage/HomePage";
-import {Register} from "../components/Register";
-import {Login} from "../components/Login";
 
-class Router extends Component{
+import HomePage from "../components/HomePage/HomePage";
+import {Login, Register, UserProfile} from "../components";
+
+class Router extends Component {
 
   render() {
     return (
       <Switch>
 
-        <Route path ='/login'>
+        <Route path='/profile'>
+          <UserProfile/>
+        </Route>
+
+        <Route path='/login'>
           <Login/>
         </Route>
 
-        <Route path ='/register'>
+        <Route path='/register'>
           <Register/>
         </Route>
 
-        <Route path ='/'>
+        <Route path='/'>
           <HomePage/>
         </Route>
 

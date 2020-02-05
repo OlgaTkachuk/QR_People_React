@@ -7,20 +7,27 @@ import './Header.css';
 
 import {api} from '../../api/request.wrapper'
 import {tokenEnum} from '../../constants'
+import {checkIsUserLoggedGuard} from '../../guards'
 
 const AuthButtons = ({children, className}) => {
-  const token = localStorage.getItem('access_token');
+  const token = checkIsUserLoggedGuard();
 
   async function handleLogout() {
     await api.logoutUser();
 
-    localStorage.removeItem(tokenEnum.ACCESS_TOKEN)
-    localStorage.removeItem(tokenEnum.REFRESH_TOKEN)
+    localStorage.removeItem(tokenEnum.ACCESS_TOKEN);
+    localStorage.removeItem(tokenEnum.REFRESH_TOKEN);
   }
 
   if (token) {
     return (
       <div className={className}>
+        <Link to='/profile'>
+          <Button>
+            My Profile
+          </Button>
+        </Link>
+
         <Button onClick={handleLogout}>
           Logout
         </Button>
@@ -34,6 +41,7 @@ const AuthButtons = ({children, className}) => {
             Login
           </Button>
         </Link>
+
         <Link to='/register'>
           <Button>
             Register
@@ -50,10 +58,13 @@ function MainLogo(props) {
   // const {children, className} = props;
 
   return (
-    <div className='logo-text'>
-      <h1>QR PEOPLE</h1>
-      We will find your parents
-    </div>
+    <Link to='/'>
+      <div className='logo-text'>
+        <h1>QR PEOPLE</h1>
+        We will find your parents
+      </div>
+    </Link>
+
   )
 }
 
@@ -64,10 +75,6 @@ class Header extends Component {
         <MainLogo/>
         <AuthButtons className='auth-btn-wrapper'/>
 
-        <br/>
-        todo list:
-        <br/>
-        1) Огортка для фетча для посилання запитів на бек
         <br/>
         2) універсальна компонента інпуту
       </header>

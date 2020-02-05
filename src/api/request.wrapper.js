@@ -1,24 +1,23 @@
-import {config} from '../config'
-import {tokenEnum, requestHeadersEnum} from '../constants'
-
 import {default as axios} from 'axios';
+
+import {config} from '../config'
+import {requestHeadersEnum} from '../constants'
+import {checkIsUserLoggedGuard} from '../guards'
 
 export const api = {
   createUser(userContext) {
     const userForCreate = objectBuilder(userContext);
 
-    return axios.post(config.API_HOST,
-      `mutation {
-                createUser(userInput: ${userForCreate})
-            }`)
+    return axios.post(
+      config.API_HOST,
+      {
+        query: `mutation {createUser(userInput: {${userForCreate}})}`
+      }
+    )
   },
 
   logoutUser() {
-    const access_token = localStorage.getItem(tokenEnum.ACCESS_TOKEN);
-
-    if (!access_token) {
-      throw new Error('No token')
-    }
+    const access_token = checkIsUserLoggedGuard();
 
     return axios.post(
       config.API_HOST,

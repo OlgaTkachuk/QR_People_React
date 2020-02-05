@@ -11,6 +11,7 @@ export const Register = () => {
   const [values, setValues] = React.useState({
     email: '',
     name: '',
+    surname: '',
     city: '',
     password: '',
     showPassword: false,
@@ -25,11 +26,11 @@ export const Register = () => {
   };
 
 
-  const submitForm =  async e => {
+  const submitForm = async e => {
     e.preventDefault();
     console.log(values);
     delete values.showPassword;
-    await api.createUser(...values)
+    await api.createUser({...values})
   };
 
   return (
@@ -43,11 +44,21 @@ export const Register = () => {
             onChange={handleChange('name')}
           />
         </FormControl>
+        <br/>
+
+        <FormControl className='input-label'>
+          <InputLabel htmlFor="standard-adornment-password">SURNAME</InputLabel>
+          <Input
+            type="text"
+            color="secondary"
+            onChange={handleChange('surname')}
+          />
+        </FormControl>
 
         <br/>
 
         <FormControl className='input-label'>
-          <InputLabel htmlFor="standard-adornment-password">EMAIL</InputLabel>
+          <InputLabel htmlFor="standard-adornment-email">EMAIL</InputLabel>
           <Input
             type="text"
             color="secondary"
@@ -58,7 +69,7 @@ export const Register = () => {
         <br/>
 
         <FormControl className='input-label'>
-          <InputLabel htmlFor="standard-adornment-password">CITY</InputLabel>
+          <InputLabel htmlFor="standard-adornment-city">CITY</InputLabel>
           <Input
             type="text"
             color="secondary"
