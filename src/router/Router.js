@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Route, Switch} from "react-router-dom";
 
 import HomePage from "../components/HomePage/HomePage";
-import {Login, Register, UserProfile} from "../components";
+import {Login, Register} from "../components";
+import UserProfile from "../components/UserProfile/UserProfile";
 
 class Router extends Component {
 

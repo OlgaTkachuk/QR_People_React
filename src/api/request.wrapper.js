@@ -16,6 +16,42 @@ export const api = {
     )
   },
 
+  getPersonalInfoByToken(token) {
+    return axios.post(
+      config.API_HOST,
+      {
+        query: `
+            query {
+              userByToken
+              {
+                _id,
+                name,
+                 surname,
+                 phone,
+                 email,
+                 city,
+                 role_id,
+                 related_persons {
+                   _id
+                   name,
+               surname,
+                   description,
+                  medical_info,
+                  city
+                },
+                 max_persons,
+                 created_at
+               }
+             }`
+      },
+      {
+        headers: {
+          [requestHeadersEnum.AUTHORIZATION]: token
+        }
+      }
+    )
+  },
+
   logoutUser() {
     const access_token = checkIsUserLoggedGuard();
 
