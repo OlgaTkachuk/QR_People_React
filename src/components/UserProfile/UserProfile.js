@@ -4,9 +4,10 @@ import './UserProfile.css'
 
 import {api} from "../../api/request.wrapper";
 import {checkIsUserLoggedGuard} from "../../guards";
+import {RelatedPersons} from "../Persons/RelatedPersons";
 
 
-class UserProfile extends Component{
+class UserProfile extends Component {
   state = {};
   token = checkIsUserLoggedGuard();
 
@@ -22,9 +23,7 @@ class UserProfile extends Component{
 
   getUserInfo = async () => {
     const userInfo = await api.getPersonalInfoByToken(this.token);
-    const user = userInfo.data.data.userByToken
-
-    console.log(user);
+    const user = userInfo.data.data.userByToken;
 
     await this.setStateAsync({
       name: user.name,
@@ -33,7 +32,7 @@ class UserProfile extends Component{
       phone: user.phone,
       city: user.city,
       max_persons: user.max_persons,
-      already_connect: user.related_persons.length,
+      already_connect: Array.from(user.related_persons).length,
       related_persons: user.related_persons,
     });
   }
@@ -42,7 +41,6 @@ class UserProfile extends Component{
     return (
       <div className='container'>
         <h3>MY PROFILE</h3>
-
 
         <div className='main-profile'>
           <div className='profile-part'>NAME</div>
@@ -72,14 +70,11 @@ class UserProfile extends Component{
         <div className='main-profile'>
           <div className='profile-part'>PERSONS</div>
           <div className='profile-part'>
-           {this.state.already_connect || 0} / {this.state.max_persons || 'NO DATA'}
+            {this.state.already_connect || 0} / {this.state.max_persons || 'NO DATA'}
           </div>
         </div>
 
-        <div className='main-profile'>
-          <div className='profile-part'>RELATED PERSONS</div>
-          <div className='profile-part'>TODO</div>
-        </div>
+        <RelatedPersons persons={this.state.related_persons || []}/>
       </div>
     )
   }

@@ -25,8 +25,8 @@ class Footer extends Component {
     render() {
         return (
             <footer>
-                <MainInfo/>
-                <DeveloperInfo/>
+                <MainInfo className='info-parts'/>
+                <DeveloperInfo className='info-parts'/>
             </footer>
         )
     }

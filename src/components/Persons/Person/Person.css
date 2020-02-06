@@ -1,0 +1,9 @@
+.person-info-part {
+    display: inline-block;
+    width: 50%;
+}
+
+img {
+    max-width: 170px;
+    max-height: 170px;
+}
