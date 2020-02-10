@@ -34,7 +34,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="register-form">
+    <div className="main-form">
       <form onSubmit={submitForm}>
         <FormControl className='input-label'>
           <InputLabel htmlFor="standard-adornment-password">EMAIL</InputLabel>

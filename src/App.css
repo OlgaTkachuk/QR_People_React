@@ -1,4 +1,4 @@
-.register-form  > form > input {
+.main-form  > form > input {
   width: 70%;
   height: 50px;
   display: block;
@@ -6,6 +6,12 @@
   font-size: 30px;
 }
 
-.register-form {
+.main-form {
   text-align: center;
 }
+
+.input-label {
+  width: 50%;
+  margin: 20px !important;
+}
+

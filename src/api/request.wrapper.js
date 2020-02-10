@@ -16,6 +16,22 @@ export const api = {
     )
   },
 
+  addPerson(personContext) {
+    const person= objectBuilder(personContext);
+
+    return axios.post(
+      config.API_HOST,
+      {
+        query: `mutation {createPerson(personInput: {
+        ${person}
+        }) {
+          name
+        }
+        }`
+      }
+    )
+  },
+
   getPersonalInfoByToken(token) {
     return axios.post(
       config.API_HOST,

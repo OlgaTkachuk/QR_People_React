@@ -28,13 +28,12 @@ export const Register = () => {
 
   const submitForm = async e => {
     e.preventDefault();
-    console.log(values);
     delete values.showPassword;
-    await api.createUser({...values})
+    await api.createUser(values)
   };
 
   return (
-    <div className="register-form">
+    <div className="main-form">
       <form onSubmit={submitForm}>
         <FormControl className='input-label'>
           <InputLabel htmlFor="standard-adornment-password">NAME</InputLabel>

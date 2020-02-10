@@ -74,6 +74,8 @@ class UserProfile extends Component {
           </div>
         </div>
 
+        <h3>RELATED PERSONS</h3>
+        <p/>
         <RelatedPersons persons={this.state.related_persons || []}/>
       </div>
     )

@@ -74,9 +74,6 @@ class Header extends Component {
       <header className='header'>
         <MainLogo/>
         <AuthButtons className='auth-btn-wrapper'/>
-
-        <br/>
-        2) універсальна компонента інпуту
       </header>
     )
   }

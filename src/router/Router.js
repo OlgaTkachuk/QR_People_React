@@ -4,6 +4,7 @@ import {Route, Switch} from "react-router-dom";
 import HomePage from "../components/HomePage/HomePage";
 import {Login, Register} from "../components";
 import UserProfile from "../components/UserProfile/UserProfile";
+import {AddPerson} from "../components/Persons/AddPerson";
 
 class Router extends Component {
 
@@ -21,6 +22,10 @@ class Router extends Component {
 
         <Route path='/register'>
           <Register/>
+        </Route>
+
+        <Route path='/add-person'>
+          <AddPerson/>
         </Route>
 
         <Route path='/'>
