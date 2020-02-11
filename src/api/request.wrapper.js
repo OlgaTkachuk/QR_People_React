@@ -1,7 +1,7 @@
 import {default as axios} from 'axios';
 
 import {config} from '../config'
-import {requestHeadersEnum} from '../constants'
+import {requestHeadersEnum, tokenEnum} from '../constants'
 import {checkIsUserLoggedGuard} from '../guards'
 
 export const api = {
@@ -28,6 +28,11 @@ export const api = {
           name
         }
         }`
+      },
+      {
+        headers: { // TODO check token with helper
+          [requestHeadersEnum.AUTHORIZATION]: localStorage.getItem(tokenEnum.ACCESS_TOKEN)
+        }
       }
     )
   },

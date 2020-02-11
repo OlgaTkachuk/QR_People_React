@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Button} from "@material-ui/core";
+
 import './Person.css'
 
 export const Person = ({person: {name, surname, description, medical_info, city}}) => {
@@ -40,6 +42,11 @@ export const Person = ({person: {name, surname, description, medical_info, city}
         </div>
       </div>
 
+      <p/>
+
+      <Button className='remove-person-button'>
+        Remove {name}
+      </Button>
 
       <hr/>
     </div>

@@ -61,17 +61,6 @@ export const AddPerson = () => {
         <br/>
 
         <FormControl className='input-label'>
-          <InputLabel>DESCRIPTION</InputLabel>
-          <Input
-            type="text"
-            color="secondary"
-            onChange={handleChange('email')}
-          />
-        </FormControl>
-
-        <br/>
-
-        <FormControl className='input-label'>
           <InputLabel>MEDICAL INFO</InputLabel>
           <Input
             type="text"

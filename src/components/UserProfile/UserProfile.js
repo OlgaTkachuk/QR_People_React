@@ -1,4 +1,7 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
+
+import {Button} from "@material-ui/core";
 
 import './UserProfile.css'
 
@@ -77,6 +80,16 @@ class UserProfile extends Component {
         <h3>RELATED PERSONS</h3>
         <p/>
         <RelatedPersons persons={this.state.related_persons || []}/>
+        <p/>
+
+        <Link to='/add-person'>
+          <Button
+            className={ (this.state.already_connect >= this.state.max_persons) ? 'hide' : 'add-person-button'}
+            variant="outlined"
+            color="primary">
+            Add person
+          </Button>
+        </Link>
       </div>
     )
   }
