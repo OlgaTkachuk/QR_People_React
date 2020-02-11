@@ -3,8 +3,20 @@ import React from "react";
 import {Button} from "@material-ui/core";
 
 import './Person.css'
+import {api} from "../../../api/request.wrapper";
 
-export const Person = ({person: {name, surname, description, medical_info, city}}) => {
+export const Person = ({person: {_id, name, surname, description, medical_info, city}, persons}) => {
+
+  async function handleDeleteClick() {
+    console.log(_id);
+    const index = persons.findIndex(person => person._id === _id);
+    persons.splice(index, 1);
+
+    await api.editPersons(persons)
+
+    console.log(persons);
+  }
+
 
   return (
     <div>
@@ -44,7 +56,7 @@ export const Person = ({person: {name, surname, description, medical_info, city}
 
       <p/>
 
-      <Button className='remove-person-button'>
+      <Button className='remove-person-button' onClick={handleDeleteClick}>
         Remove {name}
       </Button>
 

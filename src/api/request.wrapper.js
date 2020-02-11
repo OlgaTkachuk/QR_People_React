@@ -11,22 +11,63 @@ export const api = {
     return axios.post(
       config.API_HOST,
       {
-        query: `mutation {createUser(userInput: {${userForCreate}})}`
+        query: `mutation {createUser(userInput: ${userForCreate})}`
       }
     )
   },
 
   addPerson(personContext) {
-    const person= objectBuilder(personContext);
+    const person = objectBuilder(personContext);
 
     return axios.post(
       config.API_HOST,
       {
-        query: `mutation {createPerson(personInput: {
-        ${person}
-        }) {
+        query: `mutation {createPerson(personInput:
+        ${person}) {
           name
         }
+        }`
+      },
+      {
+        headers: { // TODO check token with helper
+          [requestHeadersEnum.AUTHORIZATION]: localStorage.getItem(tokenEnum.ACCESS_TOKEN)
+        }
+      }
+    )
+  },
+
+  editPersons(personArray) {
+    let persons = '';
+
+    if (personArray.length) {
+      personArray.forEach(person => {
+        delete person._id;
+        const validPerson = objectBuilder(person);
+        persons += validPerson + ', '
+      })
+    }
+
+    console.log(persons);
+
+    console.log(`mutation {editPerson(personInput: [${persons}]) {
+               name,
+               related_persons {
+                 name,
+                 _id
+               }
+             }
+            }`);
+
+    return axios.post(
+      config.API_HOST,
+      {
+        query: `mutation {editPerson(personInput: [${persons}]) {
+           name,
+           related_persons {
+             name,
+             _id
+           }
+         }
         }`
       },
       {
@@ -96,9 +137,8 @@ export const api = {
       config.API_HOST,
       {
         query: `
-      mutation { login(credentials: {
-        ${optimazeObject}
-      }) {
+      mutation { login(credentials: 
+        ${optimazeObject}) {
           access_token,
           refresh_token
         }
@@ -108,14 +148,16 @@ export const api = {
   }
 };
 
-function objectBuilder(nonGraphObject) {
-  let str = '';
+function objectBuilder(nonGraphObject) { // TODO Пофіксити калхоз
+  let str = '{';
 
   const keys = Object.keys(nonGraphObject);
 
   keys.forEach(key => {
     str += `${key}: "${nonGraphObject[key]}", `
   });
+
+  str += '}';
 
   return str;
 }
