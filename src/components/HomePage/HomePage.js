@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <div className='main-div'>
         <div className='image-content'>
-            <img src={require("../../assets/message-bottle.jpg")} alt="Home page photo"/>
+            <img src={require("../../assets/Parent.jpg")} alt="Home page photo"/>
         </div>
 
         <div className='content'>

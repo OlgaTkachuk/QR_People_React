@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import {FormControl, InputLabel, Input, InputAdornment, IconButton} from "@material-ui/core";
 import {Visibility, VisibilityOff} from '@material-ui/icons';
 
 import './Login.css'
 import {FormSubmitButton} from "../helper-components";
-import {tokenEnum} from "../../constants";
-import {api} from "../../api/request.wrapper";
+// import {tokenEnum} from "../../constants";
+// import {api} from "../../api/request.wrapper";
+import {AuthContext} from "../../context/AuthContext";
 
 export const Login = () => {
+  const { login } = useContext(AuthContext);
+
 
   const [values, setValues] = React.useState({
     email: '',
@@ -27,10 +30,12 @@ export const Login = () => {
     e.preventDefault();
     console.log(values);
     delete values.showPassword;
-    const resp = await api.authUser({...values});
+    // const resp = await api.authUser({...values});
+    //
+    // localStorage.setItem(tokenEnum.ACCESS_TOKEN, resp.data.data.login[tokenEnum.ACCESS_TOKEN]);
+    // localStorage.setItem(tokenEnum.REFRESH_TOKEN, resp.data.data.login[tokenEnum.REFRESH_TOKEN]);
 
-    localStorage.setItem(tokenEnum.ACCESS_TOKEN, resp.data.data.login[tokenEnum.ACCESS_TOKEN]);
-    localStorage.setItem(tokenEnum.REFRESH_TOKEN, resp.data.data.login[tokenEnum.REFRESH_TOKEN]);
+    login();
   };
 
   return (
