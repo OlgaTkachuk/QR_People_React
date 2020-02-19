@@ -6,8 +6,14 @@ import '../../index.css'
 
 function HomePage() {
   return (
-    <div>
+    <div className='main-div'>
+        <div className='image-content'>
+            <img src={require("../../assets/message-bottle.jpg")} alt="Home page photo"/>
+        </div>
 
+        <div className='content'>
+            <span>Welcome to QR People website</span>
+        </div>
     </div>
   )
 }

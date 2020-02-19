@@ -53,15 +53,14 @@ const AuthButtons = ({children, className}) => {
 };
 
 function MainLogo(props) {
-  console.log(props);
-
+  // console.log(props);
   // const {children, className} = props;
 
   return (
     <Link to='/'>
       <div className='logo-text'>
         <h1>QR PEOPLE</h1>
-        We will find your parents
+        We help to find your parents
       </div>
     </Link>
 

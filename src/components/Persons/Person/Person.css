@@ -3,7 +3,7 @@
     width: 50%;
 }
 
-img {
+.person-info-part > img {
     max-width: 170px;
     max-height: 170px;
 }

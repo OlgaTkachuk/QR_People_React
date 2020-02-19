@@ -1,4 +1,23 @@
-.mainDiv {
-    height: 1000px;
-    background-color: aquamarine;
+.main-div {
+    background-color: rgba(169, 184, 246, 0.27);
+    display: flex;
+}
+
+.image-content {
+    width: 70%;
+    display: flex;
+    text-align: center;
+}
+
+.image-content > img {
+    display: flex;
+    width: 70%;
+}
+
+.content {
+    width: 40%;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
