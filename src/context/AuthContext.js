@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(); // If I set default value here I have context
 
 
 const AuthContextProvider = ({ children }) => {
@@ -16,7 +16,9 @@ const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{auth, login, logout }}>
+    <AuthContext.Provider value={
+      {text: 'RRRRRRRRR'}
+    }>
       {children}
     </AuthContext.Provider>
   );
