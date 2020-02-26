@@ -1,68 +1,79 @@
-import React, {Component, useContext} from "react";
+import React, {useContext} from "react";
 import {Link} from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
 
 import './Header.css';
 
-import {api} from '../../api/request.wrapper'
-import {tokenEnum} from '../../constants'
-import {checkIsUserLoggedGuard} from '../../guards'
-import {AuthContext} from "../../context/AuthContext";
+// import {api} from '../../api/request.wrapper'
+// import {tokenEnum} from '../../constants'
+// import {checkIsUserLoggedGuard} from '../../guards'
+import AuthContextProvider, {AuthContext} from "../../context/AuthContext";
 
 
-const AuthButtons = ({children, className}, contextFromPropsKey) => {
-    // const token = checkIsUserLoggedGuard();
+function AuthButtons({className}) {
+    const context = useContext(AuthContext);
 
-    async function handleLogout() {
+    const handleLogout = async () => {
         // await api.logoutUser();
         //
         // localStorage.removeItem(tokenEnum.ACCESS_TOKEN);
         // localStorage.removeItem(tokenEnum.REFRESH_TOKEN);
         // logout();
+        context.changeTextTTTT();
+        context.isUserAuth = false
+    };
+
+
+    const handleLogin = async () => {
+        // await api.logoutUser();
+        //
+        // localStorage.removeItem(tokenEnum.ACCESS_TOKEN);
+        // localStorage.removeItem(tokenEnum.REFRESH_TOKEN);
+        // logout();
+        context.changeTextRRRRR();
+        context.isUserAuth = true
+    };
+
+    console.log(context);
+
+    if (context.isUserAuth) {
+
+
+        return (
+            <div className={className}>
+                <Link to='/profile'>
+                    <Button>
+                        My Profile
+                    </Button>
+                </Link>
+                <Button onClick={handleLogout}>
+                    Logout
+                </Button>
+            </div>
+
+        )
     }
 
-        return <AuthContext.Consumer>
-            {(context) => {
-                console.log(context);
-                console.log(contextFromPropsKey);
-                return (
-                    <div className={className}>
-                        <Link to='/profile'>
-                            <Button>
-                                My Profile
-                            </Button>
-                        </Link>
+    return (
+        <div className={className}>
+            {/*<Link to='/login'>*/}
+            <Button onClick={handleLogin}>
+                Login
+            </Button>
+            {/*</Link>*/}
 
-                        <Button onClick={handleLogout}>
-                            Logout
-                        </Button>
-                    </div>
-                )
-            }}
-        </AuthContext.Consumer>
+            {/*<Link to='/register'>*/}
+            <Button onClick={handleLogout}>
+                Register {context.text}
+            </Button>
+            {/*</Link>*/}
+        </div>
+    )
 
-    // return <AuthContext.Consumer>
-    //     <div className={className}>
-    //         <Link to='/login'>
-    //             <Button>
-    //                 Login
-    //             </Button>
-    //         </Link>
-    //
-    //         <Link to='/register'>
-    //             <Button>
-    //                 Register
-    //             </Button>
-    //         </Link>
-    //     </div>
-    // </AuthContext.Consumer>
-};
+}
 
-function MainLogo(props) {
-    // console.log(props);
-    // const {children, className} = props;
-
+function MainLogo() {
     return (
         <Link to='/'>
             <div className='logo-text'>
@@ -70,19 +81,18 @@ function MainLogo(props) {
                 We help to find your parents
             </div>
         </Link>
-
     )
 }
 
-class Header extends Component {
-    render() {
-        return (
+function Header() {
+    return (
+        <AuthContextProvider>
             <header className='header'>
                 <MainLogo/>
                 <AuthButtons className='auth-btn-wrapper'/>
             </header>
-        )
-    }
+        </AuthContextProvider>
+    )
 }
 
 export default Header;
