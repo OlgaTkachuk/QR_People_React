@@ -1,0 +1,26 @@
+.header {
+    height: 150px;
+    background-color: antiquewhite;
+}
+
+.logo-text {
+    margin: 10px;
+    display: inline-block;
+}
+
+.auth-btn-wrapper {
+    display: inline-block;
+    float: right;
+    margin: 10px;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    background: none;
+}

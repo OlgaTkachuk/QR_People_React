@@ -1,0 +1,21 @@
+.main-form  > form > input {
+  width: 70%;
+  height: 50px;
+  display: block;
+  margin: 20px auto;
+  font-size: 30px;
+}
+
+.main-form {
+  text-align: center;
+}
+
+.input-label {
+  width: 50%;
+  margin: 20px !important;
+}
+
+
+.hide {
+  display: none !important;
+}

@@ -1,0 +1,19 @@
+.person-info-part {
+    display: inline-block;
+    width: 50%;
+}
+
+.person-info-part > img {
+    max-width: 170px;
+    max-height: 170px;
+}
+
+.remove-person-button {
+    width: 20%;
+    border: 1px solid #fc8e89 !important;
+}
+
+.remove-person-button:hover {
+    border: 1px solid #fc0300 !important;
+    background-color: rgba(252, 10, 0, 0.04) !important;
+}
